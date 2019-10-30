@@ -85,7 +85,7 @@ export default class ChatFeed extends React.Component {
     // Other end is typing...
     if (isTyping) {
       messageNodes.push(
-        <div key="isTyping" style={{ ...styles.chatbubbleWrapper }}>
+        <div key="isTyping" style={{ ...styles.chatbubbleWrapper as any }}>
           <ChatBubble
             message={new Message({ id: 1, message: '...', senderName: '' })}
             bubbleStyles={bubbleStyles}
@@ -102,11 +102,11 @@ export default class ChatFeed extends React.Component {
    * render : renders our chatfeed
    */
   render() {
-    const inputField = this.props.hasInputField && <ChatInput />;
+    const inputField = this.props.hasInputField && <ChatInput inputStyles={{}} inputPlaceholder={""}/>;
     const { maxHeight } = this.props;
 
     return (
-      <div id="chat-panel" style={styles.chatPanel}>
+      <div id="chat-panel" style={styles.chatPanel as any}>
         <div
           ref={c => {
             this.chat = c;
