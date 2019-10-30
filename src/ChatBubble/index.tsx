@@ -27,19 +27,19 @@ export default class ChatBubble extends React.Component {
         ? {
             ...styles.chatbubble,
             ...bubblesCentered ? {} : styles.chatbubbleOrientationNormal,
-            ...chatbubble,
             ...userBubble,
           }
         : {
             ...styles.chatbubble,
             ...styles.recipientChatbubble,
-            ...bubblesCentered
-              ? {}
-              : styles.recipientChatbubbleOrientationNormal,
+            ...bubblesCentered ? {} : styles.recipientChatbubbleOrientationNormal,
             ...chatbubble,
-            ...userBubble,
           };
 
+    const bubbleText =
+      this.props.message.id === 0
+        ? userBubble.text ? userBubble.text : text
+        : chatbubble.text ? chatbubble.text : text
     return (
       <div
         style={{
@@ -47,7 +47,7 @@ export default class ChatBubble extends React.Component {
         }}
       >
         <div style={chatBubbleStyles}>
-          <p style={{ ...styles.p, ...text }}>{this.props.message.message}</p>
+          <p style={{ ...styles.p, ...bubbleText }}>{this.props.message.message}</p>
         </div>
       </div>
     );
